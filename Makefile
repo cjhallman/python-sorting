@@ -43,6 +43,12 @@ lint: \
 	_lint-python-isort \
 	_lint-python-black \
 	_lint-python-flake8
+
+# Run pytest
+.PHONY: test
+test: \
+	_helper-ensure-pwd-is-reporoot \
+	_run-pytest
 	 
 
 # -----------------------------------------------------------------------------
@@ -152,3 +158,14 @@ _helper-ensure-pwd-is-reporoot:
 	echo ERROR "'make $(MAKECMDGOALS)' must be executed from the root of this repository"; \
 	exit 1; \
 	fi 
+
+# -----------------------------------------------------------------------------
+# TARGETS - TESTS
+# -----------------------------------------------------------------------------
+
+.PHONY: _run-pytest
+_run-pytest:
+	@echo INFO $@ is STARTING... 
+	@source $(VENV_ACTIVATE) \
+	&& pytest -s -vv
+	@echo INFO $@ is DONE
