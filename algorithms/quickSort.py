@@ -23,7 +23,7 @@ def quickSortRec(arr: list[int], start: int, end: int):
 def partition(arr: list[int], start: int, end: int):
     # select random pivot
     pivotIdx = random.randint(start, end)
-    # move point to end of array
+    # move pivot to end of array
     swap_vals(arr, pivotIdx, end)
     pivotVal = arr[end]
     # set last swapped to start
